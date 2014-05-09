@@ -34,7 +34,7 @@ module ActionMailerWithRequest
             defaults[:port]     = port if port != standard_port
           end
 
-          default_url_options_without_current_request(*args).merge(defaults)
+          defaults
         end
 
         alias_method_chain :default_url_options, :current_request
