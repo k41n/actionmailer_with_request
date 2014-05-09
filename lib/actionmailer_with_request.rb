@@ -20,7 +20,7 @@ module ActionMailerWithRequest
         #
         # Returns the default url options Hash.
         def default_url_options_with_current_request(*args)
-          defaults = {}
+          defaults = default_url_options_without_current_request(*args)
           request  = Thread.current["actiondispatch.request"]
 
           if request
@@ -30,7 +30,7 @@ module ActionMailerWithRequest
             standard_port = request.standard_port
 
             defaults[:protocol] = protocol
-            defaults[:host]     = host
+            defaults[:host]     ||= host
             defaults[:port]     = port if port != standard_port
           end
 
